@@ -1,7 +1,24 @@
 #!/usr/bin/env bash
-# Install nginx web server
+# Installs nginx, listens on port 80 and serves a page containing "Holberton School"
 
-sudo apt-get update -y
-sudo apt-get install -y nginx
-sudo echo "Holberton School" > /var/www/html/index.html
-sudo service nginx restart
+apt-get -y update
+apt-get -y install nginx
+
+echo "Holberton School for the win!" > /var/www/html/index.html
+
+cat > /etc/nginx/sites-available/default <<'CONF'
+server {
+listen 80 default_server;
+
+root /var/www/html;
+index index.html index.htm;
+
+server_name _;
+
+location / {
+try_files $uri $uri/ =404;
+}
+}
+CONF
+
+service nginx restart
