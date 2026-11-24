@@ -10,6 +10,6 @@ Adding redundancy to the web stack: two Nginx web servers behind an HAProxy load
 ## Servers
 | Name | IP |
 | ---- | -- |
-| 7123-web-01 | 18.133.158.178 |
+| 7123-web-01 | 35.178.153.123 |
 | 7123-web-02 | 3.9.132.43 |
 | 7123-lb-01 | 3.10.227.167 |
