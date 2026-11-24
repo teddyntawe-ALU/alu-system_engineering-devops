@@ -1,28 +1,30 @@
 #!/usr/bin/env bash
-# Installs nginx and configures /redirect_me as a 301 Moved Permanently redirect
-
+# Installs Nginx and makes /redirect_me a "301 Moved Permanently" redirection
 apt-get -y update
 apt-get -y install nginx
 
+mkdir -p /var/www/html
 echo "Holberton School for the win!" > /var/www/html/index.html
 
 cat > /etc/nginx/sites-available/default <<'CONF'
 server {
-listen 80 default_server;
+	listen 80 default_server;
 
-root /var/www/html;
-index index.html index.htm;
+	root /var/www/html;
+	index index.html index.htm;
 
-server_name _;
+	server_name _;
 
-location /redirect_me {
-return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-}
+	location /redirect_me {
+		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+	}
 
-location / {
-try_files $uri $uri/ =404;
-}
+	location / {
+		try_files $uri $uri/ =404;
+	}
 }
 CONF
+
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
 service nginx restart

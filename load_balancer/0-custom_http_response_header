@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Configures Nginx like web-01 and adds an X-Served-By header holding the server's hostname
-
 apt-get -y update
 apt-get -y install nginx
 
+mkdir -p /var/www/html
 echo "Holberton School for the win!" > /var/www/html/index.html
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 
@@ -19,8 +19,8 @@ server {
 	add_header X-Served-By $hostname;
 
 	error_page 404 /404.html;
-
 	location = /404.html {
+		root /var/www/html;
 		internal;
 	}
 

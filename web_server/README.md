@@ -1,17 +1,20 @@
 # Web server
-# Background Context
 
-In this project, some of the tasks will be graded on 2 aspects:
+Configuring an Nginx web server on Ubuntu with Bash scripts that run without any human intervention.
 
-Is your web-01 server configured according to requirements
-Does your answer file contain a Bash script that automatically performs commands to configure an Ubuntu machine to fit requirements (meaning without any human intervention)
-For example, if I need to create a file /tmp/test containing the string hello world and modify the configuration of Nginx to listen on port 8080 instead of 80, I can use emacs on my server to create the file and to modify the Nginx configuration file /etc/nginx/sites-enabled/default.
-#Resources
+| File | Description |
+| ---- | ----------- |
+| `0-transfer_file` | Transfers a file to a server's home directory with `scp` (strict host key checking disabled) |
+| `1-install_nginx_web_server` | Installs Nginx on port 80; `/` returns a page containing `Holberton School` |
+| `2-setup_a_domain_name` | The domain name pointing to web-01 |
+| `3-redirection` | Adds a `301 Moved Permanently` redirection on `/redirect_me` |
+| `4-not_found_page_404` | Adds a custom 404 page containing `Ceci n'est pas une page` |
+| `5-design_a_beautiful_404_page.html` | A designed 404 page |
 
-Read or watch:
-
-.[How the web works](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/How_the_Web_works)
-
-.[Nginx](https://en.wikipedia.org/wiki/Nginx)
-
-.[How to Configure Nginx](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-16-04)
+## Key concepts
+- **Web server**: software that accepts HTTP requests and returns pages/files.
+- **Parent and child processes**: Nginx runs a master (parent) process that reads the config and manages worker (child) processes that handle requests.
+- **Main HTTP requests**: GET, POST, PUT, DELETE, HEAD.
+- **DNS** (Domain Name System) translates domain names into IP addresses.
+  - `A` maps a name to an IPv4 address, `CNAME` aliases a name to another name,
+    `TXT` holds text, `MX` names the mail server.
